@@ -6,16 +6,18 @@ api = "7890890424:AAEwL3AvXADeymJq1hsVzEH_kAkWYnGdBsc"
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
-
-# @dp.message_handler()
-# async def all_message(message):
-#     print("Мы получили сообщение!")
-
-
 @dp.message_handler(text=['Urban', 'ff'])
 async def urban_message(message):
     print('Urban message')
 
+dp.message_handler(commands=['start'])
+async def start_message(mesage):
+    print("Start message")
 
-if __name__ == "__main_":
+@dp.message_handler()
+async def all_message(message):
+    print("Мы получили сообщение!")
+
+
+if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
